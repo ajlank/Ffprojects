@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "437025757756",
+    "project_id": "wowo-1cdc0",
+    "storage_bucket": "wowo-1cdc0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437025757756:android:91a90b0dd2f749dbb88139",
+        "android_client_info": {
+          "package_name": "com.CodeCrafedMind.GrandTurbo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPkAhu31qr1o4h_p_DuigfSrFWHEfctiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437025757756:android:41857f05802d8387b88139",
+        "android_client_info": {
+          "package_name": "com.mycompany.simpletodo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPkAhu31qr1o4h_p_DuigfSrFWHEfctiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
