@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:simpletodo/constants/route_constants.dart';
+import 'package:simpletodo/views/create_note_view.dart';
 import 'package:simpletodo/views/email_verify_view.dart';
 import 'package:simpletodo/views/login_view.dart';
 import 'package:simpletodo/views/notes_view.dart';
@@ -20,6 +21,7 @@ void main() {
         loginRoute:(context)=>LoginView(),
         notesRoute:(context)=>NotesView(),
         emailverifyRoute:(context)=>EmailVerifyView(),
+        notesCreateRoute:(context)=>CreateNoteView()
       },
     ));
 }
