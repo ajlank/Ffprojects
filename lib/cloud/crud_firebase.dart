@@ -7,11 +7,10 @@ class CrudFirebase {
 
   
   final todoDaily=FirebaseFirestore.instance.collection('tododaily');
-
   
   Future<void>deleteNote({required String documentId}) async{
     try{
-     todoDaily.doc(documentId).delete();
+     await todoDaily.doc(documentId).delete();
     }catch(e){
       throw CouldNotDeleteNoteException();
     }
@@ -19,7 +18,7 @@ class CrudFirebase {
 
   Future<void>updateNote({required String documentId, required String updatedText}) async{
     try{
-     todoDaily.doc(documentId).update({
+     await todoDaily.doc(documentId).update({
       textFieldName:updatedText        
      });
     }catch(e){

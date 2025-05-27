@@ -6,3 +6,5 @@ class CouldNotGetNoteException extends CloudExceptions{}
 class CouldNotCreateNoteException extends CloudExceptions{}
 class CouldNotUpdateNoteException extends CloudExceptions{}
 class CouldNotDeleteNoteException extends CloudExceptions{}
+class CouldNotUpdateUserNameException extends CloudExceptions{}
+

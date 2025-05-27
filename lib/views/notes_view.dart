@@ -43,7 +43,7 @@ class _NotesViewState extends State<NotesView> {
           ),
         ],
       ),
-      body:StreamBuilder(
+      body: StreamBuilder(
         stream: crudFirebaseOp.allNotes(userId: userId),
          builder: (context, snapshot) {
            switch(snapshot.connectionState){
@@ -51,7 +51,24 @@ class _NotesViewState extends State<NotesView> {
              case ConnectionState.active:
              if(snapshot.hasData){
               final allNotes=snapshot.data as Iterable<CloudNotes>;
-              return NewListView(allNotes: allNotes);
+              return NewListView(
+                allNotes: allNotes, 
+                onDelete: (CloudNotes note)async { 
+                  await crudFirebaseOp.deleteNote(documentId: note.documentId);
+                  if(context.mounted){
+                    ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: const Text('Not deleted'),
+                    )
+                  );
+                  }
+                 }, 
+                 onUpdate: (CloudNotes note) { 
+                     if(context.mounted){
+                      Navigator.of(context).pushNamed(notesCreateRoute, arguments: note);
+                     }
+                   
+                  },);
              }else{
               return const CircularProgressIndicator();
              }

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:simpletodo/cloud/cloud_notes.dart';
 import 'package:simpletodo/cloud/crud_firebase.dart';
+import 'package:simpletodo/utilites/get_argument.dart';
 
 class CreateNoteView extends StatefulWidget {
   const CreateNoteView({super.key});
@@ -14,7 +15,7 @@ class _CreateNoteViewState extends State<CreateNoteView> {
    CloudNotes? _notes;
    late final CrudFirebase _crudFirebase;
    late final TextEditingController _textController;
-
+  
   @override
   void initState() {
     _crudFirebase=CrudFirebase();
@@ -52,7 +53,15 @@ class _CreateNoteViewState extends State<CreateNoteView> {
     }
   }
 
-  Future<CloudNotes>_createOrGetExistingNotes()async{
+  Future<CloudNotes>_createOrGetExistingNotes(BuildContext context)async{
+
+    final widgetNote=context.getArgument<CloudNotes>();
+    if(widgetNote!=null){
+    _textController.text=widgetNote.userText;
+    _notes=widgetNote;
+    return widgetNote;
+    }
+    
     final existingNote=_notes;
     if(existingNote!=null){
       return existingNote;
@@ -79,7 +88,7 @@ class _CreateNoteViewState extends State<CreateNoteView> {
         backgroundColor: const Color.fromARGB(255, 215, 219, 218),
         title: const Text('Create your notes'),
       ),
-      body:FutureBuilder(future: _createOrGetExistingNotes(),
+      body:FutureBuilder(future: _createOrGetExistingNotes(context),
        builder:(context, snapshot) {
          switch(snapshot.connectionState){
            case ConnectionState.done:
