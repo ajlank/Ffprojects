@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:simpletodo/cloud/cloud_user_name.dart';
 import 'package:simpletodo/cloud/cloud_user_update.dart';
+import 'package:simpletodo/constants/route_constants.dart';
+import 'package:simpletodo/utilites/notifierval.dart';
 
 class DrwerWidgetView extends StatefulWidget {
   const DrwerWidgetView({super.key});
@@ -24,19 +26,6 @@ class _DrwerWidgetViewState extends State<DrwerWidgetView> {
    super.initState();
   }
 
- void _textControllerListener()async{
-    final user=_users;
-    if(user==null){
-      return;
-    }
-    final text=_textController.text;
-    await _userUpadte.createNewName(userId: user.userId, userName: text);
-  }
-
-  void _setupTextControllerListener(){
-    _textController.removeListener(_textControllerListener);
-    _textController.addListener(_textControllerListener);
-  }
 void _deleteNoteIfTextEmpty()async{
     final user=_users;
     if(_textController.text.isEmpty && user!=null){
@@ -48,23 +37,10 @@ void _deleteNoteIfTextEmpty()async{
     final user=_users;
      final text=_textController.text;
     if(_textController.text.isNotEmpty && user!=null){
-      await _userUpadte.updateNote(documentId: user!.userId, updatedName: text);
+      await _userUpadte.updateNote(documentId: user.userId, updatedName: text);
     }
   }
 
-  Future<CloudUserName>_createOrGetExistingNotes(BuildContext context)async{
-
-  
-    final existinguser=_users;
-    if(existinguser!=null){
-      return existinguser;
-    }
-    final userId=FirebaseAuth.instance.currentUser!.uid;
-    final text=_textController.text;
-    final newName=await _userUpadte.createNewName(userId: userId, userName:text);
-    _users=newName;
-    return newName;
-  }
 
  Future<void>fetchUserName() async {
   final userId=FirebaseAuth.instance.currentUser!.uid;
@@ -109,12 +85,43 @@ void _deleteNoteIfTextEmpty()async{
                  
                    }, icon: Icon(Icons.edit))
                   ],
-                )
+                ),
+              
               ],
             ),
+            
             ),
          
-          
+           Padding(
+             padding: const EdgeInsets.all(12.0),
+             child:ValueListenableBuilder(
+              valueListenable: notifier, 
+              builder:(context, value, child) {
+                 return  Row(
+              children: [
+                const Text('Light Mode'),
+                IconButton(onPressed: (){
+                  notifier.value=!value;
+              }, icon: Icon(value?Icons.dark_mode:Icons.light))   
+              ],
+             );
+              },)
+           ),
+            Padding(
+             padding: const EdgeInsets.all(12.0),
+             child: Row(
+              children: [
+                const Text('Log Out'),
+                IconButton(onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                  if(context.mounted){
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      loginRoute, (_)=>false);
+                  }
+              }, icon: Icon(Icons.logout))   
+              ],
+             ),
+           )       
          ],
         ),
       );
