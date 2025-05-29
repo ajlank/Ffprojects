@@ -96,8 +96,6 @@ class AvailableColorsWidget extends InheritedModel<AvailableColors>{
   }
  
 
-
-
 }
 
 class ColorWidget extends StatelessWidget {

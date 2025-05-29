@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vanillacontacts_course/inherited_notifier_view.dart';
 import 'package:vanillacontacts_course/value_notifier_view.dart';
 
 void main() {
@@ -9,16 +10,9 @@ void main() {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home:Hello(),
+      home:HomePageThree(),
       routes: {'/new-contact': (context) => NewContactView()},
     ),
   );
 }
-class Hello extends StatelessWidget {
-  const Hello({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
