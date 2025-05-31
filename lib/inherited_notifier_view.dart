@@ -16,11 +16,11 @@ final sliderData=SliderData();
 
 class SliderInheritedNotifier extends InheritedNotifier<SliderData>{
   const SliderInheritedNotifier({
-    Key? key,
+    super.key,
     required SliderData sliderData,
-    required Widget child,
+    required super.child,
     
-    }):super(key: key, notifier:sliderData, child:child);
+    }):super(notifier:sliderData);
 
    static double of(BuildContext context)=>
     context.dependOnInheritedWidgetOfExactType<SliderInheritedNotifier>()

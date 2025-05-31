@@ -59,14 +59,11 @@ class AvailableColorsWidget extends InheritedModel<AvailableColors>{
   final Color color2;
 
   const AvailableColorsWidget({
-    Key?key,
+    super.key,
      required this.color1,
      required this.color2,
-     required Widget child
-     }): super(
-      key:key,
-      child:child,
-    );
+     required super.child
+     });
 
  static AvailableColorsWidget of(BuildContext context, AvailableColors aspect){
  

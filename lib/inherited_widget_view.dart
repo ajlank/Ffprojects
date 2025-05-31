@@ -44,11 +44,10 @@ class ApiProvider extends InheritedWidget{
   final String uuid;
 
   ApiProvider({
-    Key? key, 
+    super.key, 
     required this.api,
-    required Widget child,
-    }): uuid=const Uuid().v4(),
-     super(key:key, child: child);
+    required super.child,
+    }): uuid=const Uuid().v4();
      
        @override
        bool updateShouldNotify(covariant ApiProvider oldWidget) {

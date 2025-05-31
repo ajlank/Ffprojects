@@ -3,12 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
-import 'dart:collection';
 
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
-import 'package:vanillacontacts_course/value_notifier_view.dart';
 
 // void main() {
 //   runApp(
@@ -82,8 +77,8 @@ class BreadCrumbsWidget extends StatelessWidget {
   final UnmodifiableListView<BreadCrumb>breadCrumbs;
   
   const BreadCrumbsWidget({
-    Key? key, 
-    required this.breadCrumbs,}):super(key:key);
+    super.key, 
+    required this.breadCrumbs,});
  
   @override
   Widget build(BuildContext context) {
